@@ -1,0 +1,78 @@
+/* ===== Product Cards ===== */
+.card {
+  height: 100%;                     /* full height inside column */
+  display: flex;                     /* flex layout for body alignment */
+  flex-direction: column;            /* stack image + body */
+  transition: transform 0.2s;        /* smooth hover effect */
+}
+
+.card:hover {
+  transform: translateY(-5px);       /* slight lift on hover */
+}
+
+/* ===== Card Image ===== */
+.card-img-top {
+  width: 100%;                      /* fill card width */
+  height: 200px;                     /* fixed height for all images */
+  object-fit: cover;                 /* crop/zoom without stretching */
+  border-radius: 10px 10px 0 0;     /* rounded top corners */
+}
+
+/* ===== Card Body ===== */
+.card-body {
+  flex-grow: 1;                      /* fills remaining space */
+  display: flex;                     /* flex to align content */
+  flex-direction: column;            
+  justify-content: space-between;    /* pushes button to bottom */
+}
+
+/* ===== Card Title and Text ===== */
+.card-title {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.card-text {
+  flex-grow: 1;                      /* makes description fill space */
+  margin-bottom: 0.5rem;
+}
+
+/* ===== Button Styling ===== */
+.card .btn {
+  align-self: flex-start;            /* keeps button on left */
+}
+
+/* ===== Product Box / Column Spacing ===== */
+.col-lg-3, .col-md-6 {
+  display: flex;                     /* make column stretch cards */
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* Optional: Wishlist badge */
+.wishlist-value {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  background-color: #f00;
+  color: #fff;
+  border-radius: 50%;
+  font-weight: bold;
+  position: absolute;                 /* can be placed on top of icon */
+  top: -10px;
+  right: -10px;
+}
+.like-btn i {
+  color: black;
+  transition: color 0.3s ease;
+}
+
+.like-btn i.liked {
+  color: red;
+}

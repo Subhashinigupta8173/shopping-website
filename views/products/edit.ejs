@@ -1,0 +1,58 @@
+<% layout('layouts/boilerplate') %>
+<%- include('../partials/navbar') %>
+
+<div class="container mt-5">
+  <h2 class="mb-4">Edit Product</h2>
+
+  <form action="/products/<%= foundProduct._id %>?_method=PATCH" method="POST" class="needs-validation" novalidate>
+
+    <!-- Product Name -->
+    <div class="mb-3">
+      <label for="name" class="form-label">Product Name</label>
+      <input type="text" class="form-control" id="name" name="name" placeholder="Enter product name" value="<%= foundProduct.name %>" required>
+      <div class="invalid-feedback">Kux bhar na laude</div>
+      <div class="valid-feedback">Chhutiye smart hai tu to</div>
+    </div>
+
+    <!-- Product Image -->
+    <div class="mb-3">
+      <label for="image" class="form-label">Product Image URL</label>
+      <input type="url" class="form-control" id="image" name="img" placeholder="Enter image URL" value="<%= foundProduct.img %>" required>
+      <div class="invalid-feedback">Kux bhar na laude</div>
+      <div class="valid-feedback">Chhutiye smart hai tu to</div>
+    </div>
+
+    <!-- Product Price -->
+    <div class="mb-3">
+      <label for="price" class="form-label">Price</label>
+      <input type="number" class="form-control" id="price" name="price" placeholder="Enter price" value="<%= foundProduct.price %>" min="0" required>
+      <div class="invalid-feedback">Kux bhar na laude</div>
+      <div class="valid-feedback">Chhutiye smart hai tu to</div>
+    </div>
+
+    <!-- Product Description -->
+    <div class="mb-3">
+      <label for="desc" class="form-label">Description</label>
+      <textarea class="form-control" id="desc" name="desc" rows="3" placeholder="Enter product description" required><%= foundProduct.desc %></textarea>
+      <div class="invalid-feedback">Kux bhar na laude</div>
+      <div class="valid-feedback">Chhutiye smart hai tu to</div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Update Product</button>
+  </form>
+</div>
+
+<script>
+window.addEventListener('load', () => {
+  const forms = document.querySelectorAll('.needs-validation');
+  Array.from(forms).forEach(form => {
+    form.addEventListener('submit', event => {
+      if (!form.checkValidity()) {
+        event.preventDefault();
+        event.stopPropagation();
+      }
+      form.classList.add('was-validated');
+    });
+  });
+});
+</script>

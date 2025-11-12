@@ -1,0 +1,39 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm">
+  <div class="container-fluid">
+    <!-- Brand name -->
+    <a class="navbar-brand pickzy-brand fw-bold text-danger" href="/">Pickzy</a>
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+      aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="/products">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/products/new">New</a>
+        </li>
+      </ul>
+
+      <!-- Right-side options -->
+      <div class="d-flex align-items-center" role="search">
+        <% if (!currentUser) { %>
+          <a href="/login" class="nav-link mx-2">Login</a>
+          <a href="/register" class="nav-link mx-2">Register</a>
+        <% } else { %>
+          <span class="navbar-text mx-2 text-success fw-semibold">
+            👋 Hello, <%= currentUser.username %>!
+          </span>
+          <a href="#" class="nav-link mx-2 position-relative">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <sup><span class="badge bg-danger rounded-pill">2</span></sup>
+          </a>
+          <a href="/logout" class="nav-link mx-2 text-danger">Logout</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,73 @@
+<% layout('layouts/boilerplate') %>
+<%- include('../partials/navbar') %>
+<%- include('../partials/flash') %>
+
+<div class="container mt-4">
+    <div class="row">
+        <!-- Left: Product Card -->
+        <div class="col-lg-6 col-md-12 mb-4">
+            <div class="card shadow mx-auto" style="max-width: 22rem; font-size: 0.9rem;">
+                <img class="card-img-top" src="<%= foundProduct.img %>" alt="Product image"
+                    style="height: 200px; object-fit: cover;">
+                <div class="card-body">
+                    <h5 class="card-title mb-1"><%= foundProduct.name %></h5>
+                    <p class="card-text mb-1 text-muted">₹ <%= foundProduct.price %></p>
+                    <p class="card-text" style="font-size: 0.85rem;"><%= foundProduct.desc %></p>
+
+                    <!-- ✅ Only one button kept -->
+                    <a href="/products/<%= foundProduct._id %>" class="btn btn-sm btn-outline-primary">View Now</a>
+
+                    <!-- Review count -->
+                    <% if (foundProduct.reviews && foundProduct.reviews.length) { %>
+                        <p class="text-muted mt-2"><%= foundProduct.reviews.length %> reviews</p>
+                    <% } else { %>
+                        <p class="text-muted mt-2">No reviews</p>
+                    <% } %>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Review Form + Reviews -->
+        <div class="col-lg-6 col-md-12">
+            <h5 class="fw-bold mb-3">Leave a Review</h5>
+            <form action="/products/<%= foundProduct._id %>/review" method="POST" class="mb-4">
+                <div class="mb-2">
+                    <fieldset class="starability-basic" style="font-size: 0.85rem;">
+                        <input type="radio" id="no-rate" class="input-no-rate" name="rating" value="0" checked aria-label="No rating." />
+                        <input type="radio" id="first-rate1" name="rating" value="1" />
+                        <label for="first-rate1">1 star</label>
+                        <input type="radio" id="first-rate2" name="rating" value="2" />
+                        <label for="first-rate2">2 stars</label>
+                        <input type="radio" id="first-rate3" name="rating" value="3" />
+                        <label for="first-rate3">3 stars</label>
+                        <input type="radio" id="first-rate4" name="rating" value="4" />
+                        <label for="first-rate4">4 stars</label>
+                        <input type="radio" id="first-rate5" name="rating" value="5" />
+                        <label for="first-rate5">5 stars</label>
+                    </fieldset>
+                </div>
+                <div class="mb-2">
+                    <label class="form-label small" for="comment">Comment:</label>
+                    <textarea class="form-control form-control-sm" rows="3" name="comment" id="comment"></textarea>
+                </div>
+                <button class="btn btn-sm btn-success">Add Review</button>
+            </form>
+
+            <!-- Reviews List -->
+            <div class="my-3">
+                <% for (let review of foundProduct.reviews) { %>
+                    <div class="card mb-2" style="font-size: 0.85rem;">
+                        <div class="card-body p-2">
+                            <p class="mb-1">⭐ Rated: <%= review.rating %> Stars</p>
+                            <p class="card-text mb-1">Comment: <%= review.comment %></p>
+
+                            <% if (review.createdAt) { %>
+                                <p class="text-muted small mb-0">Posted on: <%= review.createdAt.toDateString() %></p>
+                            <% } %>
+                        </div>
+                    </div>
+                <% } %>
+            </div>
+        </div>
+    </div>
+</div>

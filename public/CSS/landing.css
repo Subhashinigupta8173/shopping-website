@@ -1,0 +1,148 @@
+/* Global styles */
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Navbar */
+/* Navbar */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    background-color: #312629; /* vibrant red/pink */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: #fff; /* make links white for contrast */
+    font-weight: 500;
+}
+
+.navbar .brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #fff; /* brand text white for contrast */
+    text-decoration: none;
+}
+
+.navbar .brand {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff3366;
+    text-decoration: none;
+}
+
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+}
+
+.navbar .nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Landing page */
+.landing-page {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* Use your image as background */
+    background-image: url('/images/landing-pAGE.jpg'); /* rename the image as landing-bg.jpg and put it in /public/images */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+}
+
+.landing-page  {
+    text-align: center;
+     /* vibrant pink with some transparency */
+    padding: 3rem 4rem;
+    border-radius: 15px;
+    color: #fff;
+    backdrop-filter: blur(3px); /* subtle blur for nice effect */
+    box-shadow: 0 8px 30px rgba(234, 11, 11, 0.2); /* soft shadow */
+}
+
+
+
+
+
+
+@keyframes gradientShift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+
+
+.landing-page .overlay h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.2);
+}
+
+.landing-page .overlay p {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+    text-shadow: 1px 1px 5px rgba(0,0,0,0.2);
+}
+
+/* Button */
+.landing-page .btn {
+    padding: 0.8rem 2.5rem;
+    background-color: #fff;
+    color: #ff3366;
+    font-weight: bold;
+    text-decoration: none;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.landing-page .btn:hover {
+    background-color: #ff3366;
+    color: #fff;
+    transform: translateY(-3px);
+}
+.pickzy-brand {
+    font-size: 2rem;           /* bigger than normal */
+    font-weight: 900;           /* very bold */
+    color: #ff3366;             /* vibrant pink-red */
+    font-family: 'Poppins', sans-serif;
+    letter-spacing: 2px;        /* spacing between letters */
+    text-transform: uppercase;  /* makes it look professional */
+    text-shadow: 2px 2px 5px rgba(0,0,0,0.2); /* subtle shadow */
+    transition: transform 0.3s ease;
+}
+
+.pickzy-brand:hover {
+    transform: scale(1.1);      /* slight zoom on hover */
+    color: #ff6699;             /* hover color */
+}
+.btn-register-navbar {
+  background-color: #4caf50;  /* base green */
+  color: white !important;
+  padding: 6px 12px;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.btn-register-navbar:hover {
+  background-color: #66bb6a;  /* brighter green on hover */
+  color: white !important;
+  transform: translateY(-2px); /* slight lift on hover */
+}

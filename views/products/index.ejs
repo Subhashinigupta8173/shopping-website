@@ -1,42 +1,61 @@
 <% layout('layouts/boilerplate') %>
-<%- include('../partials/navbar') %>
-<%- include('../partials/flash') %>
+  <%- include('../partials/navbar') %>
+    <%- include('../partials/flash') %>
 
-<div class="row">
-  <% for (let item of products) { %>
-    <div class="col-lg-3 col-md-6 mb-3">
-      <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="<%= item.img %>" alt="Card image cap">
-        <div class="card-body">
-          <h5 class="card-title"><%= item.name %></h5>
+      <div class="row">
+        <% for (let item of products) { %>
+          <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card" style="width: 18rem;">
+              <img class="card-img-top" src="<%= item.img %>" alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">
+                  <%= item.name %>
+                </h5>
 
-          <!-- ❤️ Like Button -->
-          <span class="btn like-btn" product-id="<%= item._id %>">
-            <% if (currentUser && currentUser.wishList && currentUser.wishList.includes(item._id)) { %>
+                <!-- ❤️ Like Button -->
+                <span class="btn like-btn" product-id="<%= item._id %>">
+                  <% if (currentUser && currentUser.wishList && currentUser.wishList.includes(item._id)) { %>
 
-              <i class="fas fa-heart"></i> <!-- filled heart -->
-            <% } else { %>
-              <i class="far fa-heart"></i> <!-- outline heart -->
-            <% } %>
-          </span>
+                    <i class="fas fa-heart"></i> <!-- filled heart -->
+                    <% } else { %>
+                      <i class="far fa-heart"></i> <!-- outline heart -->
+                      <% } %>
+                </span>
 
-          <h5 class="card-title">₹ <%= item.price %></h5>
-          <p class="card-text"><%= item.desc %></p>
+                <h5 class="card-title">₹ <%= item.price %>
+                </h5>
+                <p class="card-text">
+                  <%= item.desc %>
+                </p>
 
-          <!-- Review count per product -->
-          <% if (item.reviews && item.reviews.length) { %>
-            <p class="text-muted"><%= item.reviews.length %> reviews</p>
-          <% } else { %>
-            <p class="text-muted">No reviews</p>
+                <!-- Review count per product -->
+                <% if (item.reviews && item.reviews.length) { %>
+                  <p class="text-muted">
+                    <%= item.reviews.length %> reviews
+                  </p>
+                  <% } else { %>
+                    <p class="text-muted">No reviews</p>
+                    <% } %>
+
+                      <!-- View Product button -->
+                      <!-- Buttons side by side -->
+                      <div class="d-flex gap-2 mt-2">
+                        <!-- View Product button -->
+                        <a href="/products/<%= item._id %>" class="btn btn-info flex-fill">View Product</a>
+
+                        <!-- Add to Cart button (red) -->
+                        <form action="/user/<%= item._id %>/add" method="POST" class="flex-fill m-0">
+                          <button type="submit" class="btn btn-danger w-100">🛒 Add to Cart</button>
+                        </form>
+                      </div>
+
+
+              </div>
+
+            </div>
+          </div>
           <% } %>
-
-          <!-- View Product button -->
-          <a href="/products/<%= item._id %>" class="btn btn-info">View Product</a>
-        </div>
       </div>
-    </div>
-  <% } %>
-</div>
 
-<!-- JS file -->
-<script src="/js/common.js"></script>
+      <!-- JS file -->
+      <script src="/js/common.js"></script>

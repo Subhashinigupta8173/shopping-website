@@ -16,6 +16,7 @@
         <li class="nav-item">
           <a class="nav-link" href="/products/new">New</a>
         </li>
+
       </ul>
 
       <!-- Right-side options -->
@@ -23,16 +24,25 @@
         <% if (!currentUser) { %>
           <a href="/login" class="nav-link mx-2">Login</a>
           <a href="/register" class="nav-link mx-2">Register</a>
-        <% } else { %>
-          <span class="navbar-text mx-2 text-success fw-semibold">
-            👋 Hello, <%= currentUser.username %>!
-          </span>
-          <a href="#" class="nav-link mx-2 position-relative">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <sup><span class="badge bg-danger rounded-pill">2</span></sup>
-          </a>
-          <a href="/logout" class="nav-link mx-2 text-danger">Logout</a>
-        <% } %>
+          <% } else { %>
+            <span class="navbar-text mx-2 text-success fw-semibold">
+              👋 Hello, <%= currentUser.username %>!
+            </span>
+
+            <!-- 🛒 Cart Icon -->
+            <a href="/user/cart" class="nav-link mx-2 position-relative">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <% if (currentUser.cart && currentUser.cart.length> 0) { %>
+                <sup>
+                  <span class="badge bg-danger rounded-pill position-absolute top-0 start-100 translate-middle">
+                    <%= currentUser.cart.length %>
+                  </span>
+                </sup>
+                <% } %>
+            </a>
+
+            <a href="/logout" class="nav-link mx-2 text-danger">Logout</a>
+            <% } %>
       </div>
     </div>
   </div>

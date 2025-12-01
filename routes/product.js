@@ -4,7 +4,7 @@ const Review = require('../models/Review');
 const { required } = require('joi');
 const router = express.Router(); // mini instance, because we can not export App that is the instance of the whole application
 
-const { validateProduct, isLoggedIn } = require('../middleware'); // <-- fixed: import isLoggedIn
+const { validateProduct, isLoggedIn,isSeller } = require('../middleware'); // <-- fixed: import isLoggedIn
 
 // Get all products
 router.get('/products',isLoggedIn,  async (req, res) => {
@@ -28,12 +28,12 @@ router.get('/products/new', isLoggedIn, (req, res) => {
 });
 
 //actually Add a new product
-router.post('/products', validateProduct, isLoggedIn, async (req, res) => {
+router.post('/products', validateProduct, isLoggedIn, isSeller,async (req, res) => {
     try {
         const { name, img, price, desc } = req.body;
 
         // Create product and save returned object
-        const newProduct = await Product.create({ name, img, price, desc });
+        const newProduct = await Product.create({ name, img, price, desc,author:req.user._id});
 
         // Flash message
         req.flash('success','Product added successfully!');

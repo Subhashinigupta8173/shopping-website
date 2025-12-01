@@ -34,7 +34,12 @@ const ProductSchema = new mongoose.Schema({
             type:mongoose.Schema.Types.ObjectId,
             ref:'Review'
         }
-    ]
+    ],
+    author:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'User'
+
+    }
 
 });
 // MIDDLE WARE THAT ARE USED BTS MONOOSE OPERATION  KARWANE ME USE HTA HAI AND JISKE ANDAR PRE ND POST     MIDDLEWARE HOTA HAI WHICH ARE BASICALLY WSED OVER THE SCHEMA AND BFORE THE Model

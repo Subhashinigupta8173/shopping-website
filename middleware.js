@@ -1,7 +1,4 @@
-const { required } = require("joi");
-
-const {productSchema,reviewSchema}=require('./schema')
-
+const { productSchema, reviewSchema } = require('./schema');
 
 const validateProduct = (req, res, next) => {
   let { name, img, price, desc } = req.body;
@@ -13,17 +10,14 @@ const validateProduct = (req, res, next) => {
   next();
 };
 
-
-
-const validateReview=(req,res,next)=>{
-    const{rating,comment}=req.body;
-    const {error}=reviewSchema.validate({rating,comment})
-    if(error){
-        return res.render('users/error', { message: error.details[0].message });
-    }
-    next();
-
-}
+const validateReview = (req, res, next) => {
+  const { rating, comment } = req.body;
+  const { error } = reviewSchema.validate({ rating, comment });
+  if (error) {
+    return res.render('users/error', { message: error.details[0].message });
+  }
+  next();
+};
 
 const isLoggedIn = (req, res, next) => {
   if (!req.isAuthenticated()) {
@@ -33,28 +27,12 @@ const isLoggedIn = (req, res, next) => {
   next();
 };
 
-module.exports={ isLoggedIn,validateProduct,validateReview}
+const isSeller = (req, res, next) => {
+  if (!req.user || req.user.role !== "seller") {
+    req.flash('error', 'you do not have the access');
+    return res.redirect('/products');
+  }
+  next();
+};
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+module.exports = { isLoggedIn, validateProduct, validateReview, isSeller };
